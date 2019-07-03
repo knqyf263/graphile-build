@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "prepublish": "mkdir -p node8plus node7minus && babel -s true --out-dir node8plus src && BABEL_ENV=node7minus babel -s true --out-dir node7minus src && ../../node_modules/.bin/flow-copy-source src node8plus",
-    "watch": "mkdir -p node8plus && babel -s true --watch --out-dir node8plus src"
+    "prepublish": "npm run snyk-protect; mkdir -p node8plus node7minus && babel -s true --out-dir node8plus src && BABEL_ENV=node7minus babel -s true --out-dir node7minus src && ../../node_modules/.bin/flow-copy-source src node8plus",
+    "watch": "mkdir -p node8plus && babel -s true --watch --out-dir node8plus src",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -45,7 +46,8 @@
     "lru-cache": "4.1.1",
     "pg-range-parser": "^1.0.0",
     "pg-sql2": "^1.0.0-beta.3",
-    "pluralize": "^5.0.0"
+    "pluralize": "^5.0.0",
+    "snyk": "^1.189.0"
   },
   "peerDependencies": {
     "pg": ">=6 <7"
@@ -63,5 +65,6 @@
     "node7minus",
     "res",
     "index.js"
-  ]
+  ],
+  "snyk": true
 }
